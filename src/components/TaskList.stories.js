@@ -21,25 +21,42 @@ export const withPinnedTasks = [
 ];
 
 // A super-simple mock of a redux store
-const store = {
+const getStore = (tasks = defaultTasks) => ({
   getState: () => {
     return {
-      tasks: defaultTasks
+      tasks
     };
   },
   subscribe: () => 0,
   dispatch: action("dispatch")
-};
+});
 
 storiesOf("TaskList", module)
-  .addDecorator(story => (
-    <Provider store={store}>
-      <div style={{ padding: "3rem" }}>{story()}</div>
+  .add("default", () => (
+    <Provider store={getStore()}>
+      <div style={{ padding: "3rem" }}>
+        <PureTaskList {...actions} />
+      </div>
     </Provider>
   ))
-  .add("default", () => <PureTaskList tasks={defaultTasks} {...actions} />)
   .add("withPinnedTasks", () => (
-    <PureTaskList tasks={withPinnedTasks} {...actions} />
+    <Provider store={getStore(withPinnedTasks)}>
+      <div style={{ padding: "3rem" }}>
+        <PureTaskList {...actions} />
+      </div>
+    </Provider>
   ))
-  .add("loading", () => <PureTaskList loading tasks={[]} {...actions} />)
-  .add("empty", () => <PureTaskList tasks={[]} {...actions} />);
+  .add("loading", () => (
+    <Provider store={getStore([])}>
+      <div style={{ padding: "3rem" }}>
+        <PureTaskList loading {...actions} />
+      </div>
+    </Provider>
+  ))
+  .add("empty", () => (
+    <Provider store={getStore([])}>
+      <div style={{ padding: "3rem" }}>
+        <PureTaskList {...actions} />
+      </div>
+    </Provider>
+  ));
