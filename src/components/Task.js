@@ -21,7 +21,7 @@ export default function Task({
         <input
           type="text"
           value={title}
-          readOnly={true}
+          readOnly
           placeholder="Input title"
           style={{ textOverflow: "ellipsis" }}
         />
@@ -29,9 +29,9 @@ export default function Task({
 
       <div className="actions" onClick={event => event.stopPropagation()}>
         {state !== "TASK_ARCHIVED" && (
-          <a onClick={() => onPinTask(id)}>
+          <button type="button" onClick={() => onPinTask(id)}>
             <span className="icon-star" />
-          </a>
+          </button>
         )}
       </div>
     </div>

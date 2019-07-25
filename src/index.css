@@ -885,6 +885,29 @@ a:focus {
 .list-item .actions a:active {
   color: #555;
 }
+.list-item .actions button {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  color: #eee;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+.list-item .actions button:hover {
+  color: #2cc5d2;
+  text-decoration: none;
+}
+.list-item .actions button:active {
+  color: #555;
+  text-decoration: none;
+}
+.list-item .actions button:focus {
+  text-decoration: none;
+}
 .list-item .actions [class^="icon-"] {
   font-size: 16px;
   line-height: 24px;
